@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>لوحة التحكم</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+
 body{
 font-family: Arial;
 margin:0;
@@ -34,6 +38,7 @@ border:none;
 background:#334155;
 color:white;
 cursor:pointer;
+border-radius:6px;
 }
 
 .sidebar button:hover{
@@ -51,6 +56,7 @@ background:white;
 padding:20px;
 margin-bottom:15px;
 border-radius:10px;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 
 .stats-grid{
@@ -63,20 +69,34 @@ table{
 width:100%;
 border-collapse:collapse;
 background:white;
+border-radius:8px;
+overflow:hidden;
 }
 
 td,th{
 padding:10px;
 border-bottom:1px solid #ddd;
+text-align:center;
 }
 
 .add-btn{
 padding:10px 15px;
 margin-bottom:15px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
 }
+
+.add-btn:hover{
+background:#1d4ed8;
+}
+
 </style>
 
 </head>
+
 
 <body>
 
@@ -96,22 +116,34 @@ margin-bottom:15px;
 
 </div>
 
+
 <div class="content">
 
 <div id="contentArea">
-
+<p style="text-align:center;">جاري تحميل لوحة القيادة...</p>
 </div>
 
 </div>
 
+
+<!-- تحميل ملفات Airtable -->
 <script src="js/airtable-config.js"></script>
 <script src="js/airtable-service.js"></script>
+
+<!-- لوحة التحكم -->
 <script src="js/admin.js"></script>
+
 
 <script>
 
 document.addEventListener("DOMContentLoaded",function(){
+
+if(typeof loadSection === "function"){
 loadSection("dashboard");
+}else{
+console.error("admin.js لم يتم تحميله");
+}
+
 });
 
 </script>
