@@ -1,5 +1,120 @@
 <!DOCTYPE html>
-<html>
-<head><title>ALZAK STORE</title></head>
-<body><h1>مرحباً بك في متجر ALZAK</h1></body>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>لوحة التحكم</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+font-family: Arial;
+margin:0;
+display:flex;
+background:#f5f5f5;
+}
+
+.sidebar{
+width:250px;
+background:#1e293b;
+color:white;
+height:100vh;
+padding:20px;
+}
+
+.sidebar h2{
+margin-bottom:20px;
+}
+
+.sidebar button{
+width:100%;
+padding:10px;
+margin-bottom:10px;
+border:none;
+background:#334155;
+color:white;
+cursor:pointer;
+}
+
+.sidebar button:hover{
+background:#475569;
+}
+
+.content{
+flex:1;
+padding:20px;
+overflow:auto;
+}
+
+.stat-card{
+background:white;
+padding:20px;
+margin-bottom:15px;
+border-radius:10px;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+td,th{
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+
+.add-btn{
+padding:10px 15px;
+margin-bottom:15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>لوحة التحكم</h2>
+
+<button onclick="loadSection('dashboard')">لوحة القيادة</button>
+<button onclick="loadSection('users')">المستخدمين</button>
+<button onclick="loadSection('orders')">الطلبات</button>
+<button onclick="loadSection('charges')">طلبات الشحن</button>
+<button onclick="loadSection('paymentMethods')">طرق الدفع</button>
+<button onclick="loadSection('currencies')">العملات</button>
+<button onclick="loadSection('vipProfit')">نسبة VIP</button>
+<button onclick="loadSection('profitLog')">الأرباح</button>
+<button onclick="loadSection('maintenance')">الصيانة</button>
+
+</div>
+
+<div class="content">
+
+<div id="contentArea">
+
+</div>
+
+</div>
+
+<script src="js/airtable-config.js"></script>
+<script src="js/airtable-service.js"></script>
+<script src="js/admin.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded",function(){
+loadSection("dashboard");
+});
+
+</script>
+
+</body>
 </html>
