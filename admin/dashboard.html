@@ -21,50 +21,50 @@
                 <div class="menu-section">
                     <div class="menu-title">الرئيسية</div>
                     <ul>
-                        <li><a href="#" onclick="loadSection('dashboard')"><i class="fas fa-tachometer-alt"></i> لوحة القيادة</a></li>
-                        <li><a href="#" onclick="loadSection('notifications')"><i class="fas fa-bell"></i> إرسال إشعار</a></li>
-                        <li><a href="#" onclick="loadSection('providers')"><i class="fas fa-truck"></i> إدارة المزودين</a></li>
-                        <li><a href="#" onclick="loadSection('import')"><i class="fas fa-upload"></i> استيراد منتجات</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة القيادة</a></li>
+                        <li><a href="pages/notifications.html"><i class="fas fa-bell"></i> إرسال إشعار</a></li>
+                        <li><a href="pages/providers.html"><i class="fas fa-truck"></i> إدارة المزودين</a></li>
+                        <li><a href="pages/import.html"><i class="fas fa-upload"></i> استيراد منتجات</a></li>
                     </ul>
                 </div>
                 <!-- المالية -->
                 <div class="menu-section">
                     <div class="menu-title">المالية</div>
                     <ul>
-                        <li><a href="#" onclick="loadSection('paymentMethods')"><i class="fas fa-credit-card"></i> طرق الدفع</a></li>
-                        <li><a href="#" onclick="loadSection('currencies')"><i class="fas fa-coins"></i> العملات</a></li>
-                        <li><a href="#" onclick="loadSection('vipProfit')"><i class="fas fa-percent"></i> نسبة ربح VIP</a></li>
-                        <li><a href="#" onclick="loadSection('profitLog')"><i class="fas fa-chart-line"></i> سجل الأرباح</a></li>
+                        <li><a href="pages/payment-methods.html"><i class="fas fa-credit-card"></i> طرق الدفع</a></li>
+                        <li><a href="pages/currencies.html"><i class="fas fa-coins"></i> العملات</a></li>
+                        <li><a href="pages/vip-profit.html"><i class="fas fa-percent"></i> نسبة ربح VIP</a></li>
+                        <li><a href="pages/profit-log.html"><i class="fas fa-chart-line"></i> سجل الأرباح</a></li>
                     </ul>
                 </div>
                 <!-- المستخدمون -->
                 <div class="menu-section">
                     <div class="menu-title">المستخدمون</div>
                     <ul>
-                        <li><a href="#" onclick="loadSection('users')"><i class="fas fa-users-cog"></i> إدارة المستخدمين</a></li>
-                        <li><a href="#" onclick="loadSection('debtBalance')"><i class="fas fa-hand-holding-usd"></i> الرصيد المدين</a></li>
-                        <li><a href="#" onclick="loadSection('topSpenders')"><i class="fas fa-trophy"></i> الأكثر صرفاً</a></li>
-                        <li><a href="#" onclick="showVipUsers()"><i class="fas fa-star"></i> الدولاء</a></li>
-                        <li><a href="#" onclick="showReferrals()"><i class="fas fa-share-alt"></i> الإجالات</a></li>
+                        <li><a href="pages/users.html"><i class="fas fa-users-cog"></i> إدارة المستخدمين</a></li>
+                        <li><a href="pages/debt-balance.html"><i class="fas fa-hand-holding-usd"></i> الرصيد المدين</a></li>
+                        <li><a href="pages/top-spenders.html"><i class="fas fa-trophy"></i> الأكثر صرفاً</a></li>
+                        <li><a href="pages/vip-users.html"><i class="fas fa-star"></i> الدولاء</a></li>
+                        <li><a href="pages/referrals.html"><i class="fas fa-share-alt"></i> الإجالات</a></li>
                     </ul>
                 </div>
                 <!-- الإدارة -->
                 <div class="menu-section">
                     <div class="menu-title">الإدارة</div>
                     <ul>
-                        <li><a href="#" onclick="showDesign()"><i class="fas fa-paint-brush"></i> التصميم</a></li>
-                        <li><a href="#" onclick="showOrderMessages()"><i class="fas fa-envelope"></i> رسائل الطلب</a></li>
-                        <li><a href="#" onclick="showOrderManagement()"><i class="fas fa-sort-amount-up"></i> إدارة الترتيب</a></li>
-                        <li><a href="#" onclick="showContactMethods()"><i class="fas fa-phone-alt"></i> وسائل التواصل</a></li>
-                        <li><a href="#" onclick="showAdminAccounts()"><i class="fas fa-user-shield"></i> حسابات الإدارة</a></li>
-                        <li><a href="#" onclick="showTwoFactor()"><i class="fas fa-lock"></i> الحقوق بخطوتين</a></li>
+                        <li><a href="pages/design.html"><i class="fas fa-paint-brush"></i> التصميم</a></li>
+                        <li><a href="pages/order-messages.html"><i class="fas fa-envelope"></i> رسائل الطلب</a></li>
+                        <li><a href="pages/order-management.html"><i class="fas fa-sort-amount-up"></i> إدارة الترتيب</a></li>
+                        <li><a href="pages/contact-methods.html"><i class="fas fa-phone-alt"></i> وسائل التواصل</a></li>
+                        <li><a href="pages/admin-accounts.html"><i class="fas fa-user-shield"></i> حسابات الإدارة</a></li>
+                        <li><a href="pages/two-factor.html"><i class="fas fa-lock"></i> الحقوق بخطوتين</a></li>
                     </ul>
                 </div>
                 <!-- الإعدادات -->
                 <div class="menu-section">
                     <div class="menu-title">الإعدادات</div>
                     <ul>
-                        <li><a href="#" onclick="loadSection('maintenance')"><i class="fas fa-tools"></i> وضع الصيانة</a></li>
+                        <li><a href="pages/maintenance.html"><i class="fas fa-tools"></i> وضع الصيانة</a></li>
                     </ul>
                 </div>
             </div>
@@ -75,11 +75,9 @@
             <div class="top-bar">
                 <i class="fas fa-bars menu-icon" onclick="toggleSidebar()"></i>
                 <h2><i class="fas fa-crown"></i> لوحة التحكم</h2>
-                <!-- تم إزالة معلومات المستخدم وزر تسجيل الخروج -->
             </div>
             <div class="content-area" id="contentArea">
-                <h1>مرحباً بك في لوحة التحكم</h1>
-                <p>اختر أحد الأقسام من القائمة الجانبية.</p>
+                <!-- سيتم تعبئة الإحصائيات هنا عبر JavaScript -->
             </div>
         </div>
     </div>
@@ -95,13 +93,11 @@
     <script src="../shared/airtable-config.js"></script>
     <script src="../shared/airtable-service.js"></script>
     <script src="js/helpers.js"></script>
-    <script src="js/admin.js"></script>
+    <script src="js/dashboard.js"></script>
     <script>
-        // تعريف دالة فتح/إغلاق القائمة الجانبية
         window.toggleSidebar = function() {
             document.getElementById('sidebar').classList.toggle('show');
         };
     </script>
-    <script>loadSection('dashboard');</script>
 </body>
 </html>
