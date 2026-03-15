@@ -1,9 +1,4 @@
 // ==================== admin.js ====================
-// الملف الرئيسي للوحة التحكم
-import { fetchRecords, createRecord, updateRecord, deleteRecord } from '../../shared/airtable-service.js';
-import { showToast } from './helpers.js';
-
-// ===== دالة تحميل القسم المحدد من القائمة الجانبية =====
 window.loadSection = async function(section) {
   const contentDiv = document.getElementById('contentArea');
   contentDiv.innerHTML = '<p style="text-align:center;">⏳ جاري التحميل...</p>';
@@ -58,12 +53,10 @@ window.loadSection = async function(section) {
 };
 
 // ===== دوال تحميل الأقسام =====
-
-// لوحة القيادة
 async function loadDashboard() {
-  const products = await fetchRecords('products');
-  const users = await fetchRecords('users');
-  const orders = await fetchRecords('orders');
+  const products = await window.fetchRecords('products');
+  const users = await window.fetchRecords('users');
+  const orders = await window.fetchRecords('orders');
   
   const totalProducts = products.length;
   const totalUsers = users.length;
@@ -93,9 +86,8 @@ async function loadDashboard() {
   `;
 }
 
-// طرق الدفع
 async function loadPaymentMethods() {
-  const records = await fetchRecords('payment_methods');
+  const records = await window.fetchRecords('payment_methods');
   let html = '<h2>💳 طرق الدفع</h2>';
   html += '<button class="add-btn" onclick="showAddPaymentMethodForm()">➕ إضافة طريقة دفع</button>';
   html += '<div class="records-grid">';
@@ -118,7 +110,6 @@ async function loadPaymentMethods() {
   return html;
 }
 
-// نموذج إضافة طريقة دفع
 window.showAddPaymentMethodForm = function() {
   const form = `
     <h3>➕ إضافة طريقة دفع</h3>
@@ -131,7 +122,6 @@ window.showAddPaymentMethodForm = function() {
   showModal('genericModal', form);
 };
 
-// حفظ طريقة دفع جديدة
 window.savePaymentMethod = async function() {
   const name = document.getElementById('pmName')?.value;
   const number = document.getElementById('pmNumber')?.value;
@@ -140,7 +130,7 @@ window.savePaymentMethod = async function() {
   if (!name || !number) return showToast('الرجاء إدخال الاسم والرقم', 'error');
   
   try {
-    await createRecord('payment_methods', {
+    await window.createRecord('payment_methods', {
       name,
       accountNumber: number,
       image: image || '',
@@ -154,11 +144,10 @@ window.savePaymentMethod = async function() {
   }
 };
 
-// حذف طريقة دفع
 window.deletePaymentMethod = async function(id) {
   if (!confirm('هل أنت متأكد من الحذف؟')) return;
   try {
-    await deleteRecord('payment_methods', id);
+    await window.deleteRecord('payment_methods', id);
     showToast('✅ تم الحذف');
     loadSection('paymentMethods');
   } catch (error) {
@@ -166,9 +155,8 @@ window.deletePaymentMethod = async function(id) {
   }
 };
 
-// العملات
 async function loadCurrencies() {
-  const records = await fetchRecords('currencies');
+  const records = await window.fetchRecords('currencies');
   let html = '<h2>💰 العملات</h2>';
   html += '<button class="add-btn" onclick="showAddCurrencyForm()">➕ إضافة عملة</button>';
   html += '<table><tr><th>الاسم</th><th>الرمز</th><th>سعر الصرف</th><th>إجراءات</th></tr>';
@@ -208,7 +196,7 @@ window.saveCurrency = async function() {
   if (!name || !symbol) return showToast('الرجاء إدخال الاسم والرمز', 'error');
   
   try {
-    await createRecord('currencies', { name, symbol, exchangeRate: rate });
+    await window.createRecord('currencies', { name, symbol, exchangeRate: rate });
     showToast('✅ تمت الإضافة');
     closeModal('genericModal');
     loadSection('currencies');
@@ -220,7 +208,7 @@ window.saveCurrency = async function() {
 window.deleteCurrency = async function(id) {
   if (!confirm('حذف العملة؟')) return;
   try {
-    await deleteRecord('currencies', id);
+    await window.deleteRecord('currencies', id);
     showToast('✅ تم الحذف');
     loadSection('currencies');
   } catch (error) {
@@ -228,9 +216,8 @@ window.deleteCurrency = async function(id) {
   }
 };
 
-// نسبة ربح VIP
 async function loadVipProfit() {
-  const records = await fetchRecords('vip_settings');
+  const records = await window.fetchRecords('vip_settings');
   let rate = 0;
   if (records.length > 0) rate = records[0].fields.profitRate || 0;
   return `
@@ -243,12 +230,11 @@ async function loadVipProfit() {
 window.saveVipProfit = async function() {
   const rate = parseFloat(document.getElementById('vipRate')?.value) || 0;
   try {
-    // نفترض وجود سجل واحد فقط في vip_settings
-    const records = await fetchRecords('vip_settings');
+    const records = await window.fetchRecords('vip_settings');
     if (records.length > 0) {
-      await updateRecord('vip_settings', records[0].id, { profitRate: rate });
+      await window.updateRecord('vip_settings', records[0].id, { profitRate: rate });
     } else {
-      await createRecord('vip_settings', { profitRate: rate });
+      await window.createRecord('vip_settings', { profitRate: rate });
     }
     showToast('✅ تم الحفظ');
     loadSection('vipProfit');
@@ -257,9 +243,8 @@ window.saveVipProfit = async function() {
   }
 };
 
-// سجل الأرباح (مبسط)
 async function loadProfitLog() {
-  const orders = await fetchRecords('orders');
+  const orders = await window.fetchRecords('orders');
   const totalSales = orders.reduce((sum, o) => sum + (o.fields.price || 0), 0);
   return `
     <h2>💰 سجل الأرباح</h2>
@@ -268,9 +253,8 @@ async function loadProfitLog() {
   `;
 }
 
-// المستخدمين (عرض بسيط)
 async function loadUsers() {
-  const users = await fetchRecords('users');
+  const users = await window.fetchRecords('users');
   let html = '<h2>👥 المستخدمين</h2>';
   html += '<table><tr><th>البريد</th><th>الاسم</th><th>رصيد المحفظة</th><th>الرصيد المدين</th><th>السماح بالدين</th></tr>';
   users.forEach(u => {
@@ -289,9 +273,8 @@ async function loadUsers() {
   return html;
 }
 
-// الرصيد المدين (عرض بسيط)
 async function loadDebtBalance() {
-  const users = await fetchRecords('users');
+  const users = await window.fetchRecords('users');
   const debtors = users.filter(u => (u.fields.debtBalance || 0) > 0);
   let html = '<h2>💸 الرصيد المدين</h2>';
   html += '<table><tr><th>المستخدم</th><th>الرصيد المدين</th></tr>';
@@ -302,9 +285,8 @@ async function loadDebtBalance() {
   return html;
 }
 
-// المستخدمون الأكثر صرفاً (مثال بسيط)
 async function loadTopSpenders() {
-  const orders = await fetchRecords('orders');
+  const orders = await window.fetchRecords('orders');
   const spending = {};
   orders.forEach(o => {
     const email = o.fields.userEmail;
@@ -320,9 +302,8 @@ async function loadTopSpenders() {
   return html;
 }
 
-// وضع الصيانة (مثال بسيط)
 async function loadMaintenance() {
-  const records = await fetchRecords('settings');
+  const records = await window.fetchRecords('settings');
   let mode = false;
   if (records.length > 0) mode = records[0].fields.maintenanceMode || false;
   return `
@@ -338,11 +319,11 @@ async function loadMaintenance() {
 window.saveMaintenance = async function() {
   const enabled = document.getElementById('maintenanceCheck')?.checked || false;
   try {
-    const records = await fetchRecords('settings');
+    const records = await window.fetchRecords('settings');
     if (records.length > 0) {
-      await updateRecord('settings', records[0].id, { maintenanceMode: enabled });
+      await window.updateRecord('settings', records[0].id, { maintenanceMode: enabled });
     } else {
-      await createRecord('settings', { maintenanceMode: enabled });
+      await window.createRecord('settings', { maintenanceMode: enabled });
     }
     showToast('✅ تم الحفظ');
     loadSection('maintenance');
@@ -351,7 +332,7 @@ window.saveMaintenance = async function() {
   }
 };
 
-// دوال مؤقتة للباقي (يمكن تطويرها لاحقاً)
+// دوال مؤقتة للباقي
 window.showVipUsers = function() { showToast('🚧 إدارة الدولاء قيد التطوير', 'info'); };
 window.showReferrals = function() { showToast('🚧 الإجالات قيد التطوير', 'info'); };
 window.showDesign = function() { showToast('🚧 التصميم قيد التطوير', 'info'); };
