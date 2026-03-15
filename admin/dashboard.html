@@ -96,6 +96,12 @@
     <script src="../shared/airtable-service.js"></script>
     <script src="js/helpers.js"></script>
     <script src="js/admin.js"></script>
+    <script>
+        // تعريف دالة فتح/إغلاق القائمة الجانبية
+        window.toggleSidebar = function() {
+            document.getElementById('sidebar').classList.toggle('show');
+        };
+    </script>
     <script>loadSection('dashboard');</script>
 </body>
 </html>
