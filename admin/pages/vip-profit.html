@@ -1,1 +1,29 @@
-.
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نسبة ربح VIP - ALZAK STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin-style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <div class="sidebar" id="sidebar">...</div>
+        <div class="main-content">
+            <div class="top-bar">
+                <i class="fas fa-bars menu-icon" onclick="toggleSidebar()"></i>
+                <h2><i class="fas fa-crown"></i> نسبة ربح VIP</h2>
+                <a href="../dashboard.html">العودة</a>
+            </div>
+            <div class="content-area" id="contentArea"></div>
+        </div>
+    </div>
+    <div id="toast"></div><div id="genericModal"></div>
+    <script src="../../shared/airtable-config.js"></script>
+    <script src="../../shared/airtable-service.js"></script>
+    <script src="../js/helpers.js"></script>
+    <script>window.toggleSidebar=function(){document.getElementById('sidebar').classList.toggle('show')};</script>
+    <script src="../js/pages/vip-profit.js"></script>
+</body>
+</html>
