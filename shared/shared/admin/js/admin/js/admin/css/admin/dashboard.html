@@ -109,34 +109,25 @@
         </div>
     </div>
 
-    <!-- استيراد ملفات JavaScript بالترتيب -->
-    <!-- أولاً: إعدادات Airtable والخدمة -->
-    <script type="module" src="../shared/airtable-config.js"></script>
-    <script type="module" src="../shared/airtable-service.js"></script>
-    <!-- ثم الملفات المحلية -->
-    <script type="module" src="js/helpers.js"></script>
-    <script type="module" src="js/admin.js"></script>
+    <!-- استيراد ملفات JavaScript (بدون type="module") -->
+    <script src="../shared/airtable-config.js"></script>
+    <script src="../shared/airtable-service.js"></script>
+    <script src="js/helpers.js"></script>
+    <script src="js/admin.js"></script>
 
     <script>
-        // دوال عامة بسيطة (غير معيارية)
+        // دوال عامة بسيطة
         window.toggleSidebar = function() {
             document.getElementById('sidebar').classList.toggle('show');
         };
 
         window.logout = function() {
-            // يمكن تطويرها لاحقاً
             if (window.showToast) {
                 window.showToast('✅ تم تسجيل الخروج');
             } else {
                 alert('تم تسجيل الخروج');
             }
         };
-
-        // استدعاء loadDashboard عند تحميل الصفحة (اختياري)
-        window.addEventListener('load', () => {
-            // يمكن تفعيلها لاحقاً
-            // if (typeof loadSection === 'function') loadSection('dashboard');
-        });
     </script>
 </body>
 </html>
